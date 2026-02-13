@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ร้านสามพี่น้อง POS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+      body {
+        font-family: 'Sarabun', sans-serif;
+        background-color: #f3f4f6;
+      }
+      /* Hide scrollbar for clean POS look */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      
+      /* Thermal Printer Optimized CSS */
+      @media print {
+        @page {
+          margin: 0;
+          size: auto;
+        }
+        
+        /* Reset all layout constraints that might hide content */
+        html, body, #root, main, div {
+          background-color: white;
+          width: 100%;
+          height: auto !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          overflow: visible !important; /* Critical fix for printing */
+          position: static !important;
+        }
+
+        /* Hide everything by default */
+        body * {
+          visibility: hidden;
+        }
+        
+        /* Hide specific UI elements explicitly */
+        .no-print, .no-print * {
+          display: none !important;
+        }
+
+        /* Show only print-only elements and their children */
+        .print-only, .print-only * {
+          visibility: visible;
+          display: block !important;
+        }
+        
+        /* Position the receipt at the very top-left with high z-index */
+        .print-only {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          padding: 0;
+          z-index: 9999;
+          background-color: white;
+        }
+      }
+      
+      /* Screen only */
+      .print-only {
+        display: none;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "recharts": "https://esm.sh/recharts@^3.7.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
